@@ -1,8 +1,98 @@
 public class NumbersCat {
-    public static String say ( long n){
+    /*
+                                                            ⠀⠀⠀⠀⠀⠀⢀⣠⣤⣴⣶⣶⠿⠿⠿⠿⠿⠿⢶⣶⣦⣤⣄⡀⠀⠀⠀⠀⠀⠀
+                                                            ⠀⠀⠀⢀⣴⣾⠿⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠿⣷⣦⡀⠀⠀⠀
+                                                            ⠀⢀⣴⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣦⡀⠀
+                                                            ⢠⣿⠋⠀⠀⠀⠀Yes, I use Maven ⠀⠀⠀   ⠙⣿⡄
+                                                            ⣾⡏⠀⠀⠀⠀⠀⠀and TDD on my Numbers⠀ ⢸⣷
+                                                            ⣿⡇⠀⠀⠀⠀⠀project, so what?⠀⠀⠀ ⠀  ⢸⣿
+                                                            ⠸⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠇
+                                                            ⠀⠙⢿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⡿⠋⠀
+                                                            ⠀⠀⠀⠙⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣶⠿⠋⠀⠀⠀
+                                                            ⠀⠀⠀⢰⣿⠀⠀⠀⠀⠀⢀⣶⣦⣤⣤⣤⣤⣴⣶⣶⠿⠿⠛⠉⠀⠀⠀⠀⠀⠀
+                                                            ⠀⠀⣠⣿⠃⠀⢀⣠⣤⣾⠟⠋⠈⠉⠉⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                                            ⠀⠀⢿⣷⡾⠿⠟⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⡦⠤⣤⣤⣤⣤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⣾⡿⢧⡵⠚⡛⠛⢶⡞⠮⣝⠲⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⡿⢟⡴⣿⡿⠿⣿⡿⡼⣷⣭⣳⡳⣌⠹⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⡿⢁⣿⣴⡿⢟⣿⡳⣿⣿⣦⣠⡿⣻⣿⠀⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⡟⢡⣾⢃⣟⣤⣿⣿⠉⠛⠻⠿⠧⣿⣿⣿⣷⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢾⣷⣿⣿⣿⡾⢋⣼⠃⠀⠀⠀⡇⠀⠀⠀⢸⣿⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣾⣷⠏⠁⣠⠤⠤⣄⣇⠀⢀⠀⢘⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⠇⠀⠘⠿⣿⣿⣷⣾⠇⠘⣶⣶⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⢿⣧⣽⣿⠀⠀⣀⠀⠀⠀⢸⣿⠀⠹⠿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣦⣦⣯⡿⢷⣄⣿⠀⠀⢠⣾⣿⣿⡆⠀⣣⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⢯⣼⣰⣿⢿⣷⣾⣿⣿⡋⣥⣃⣰⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠿⣛⡳⢿⣼⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⠀⣀⣀⣀⣤⣴⣶⣶⣶⣶⣤⣾⣿⡇⠈⠻⣿⣿⣹⢿⣿⠇⡐⠲⠮⣽⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣀⣤⣶⣿⣿⣿⣿⢿⣿⣿⣿⣻⣿⣿⣯⣽⣿⣿⣿⠿⠛⢿⣿⠃⠀⠀⢻⣿⣿⣾⣿⣇⢳⡖⣧⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢀⣼⣿⣿⠟⠿⣿⣿⣿⣿⡿⠿⢿⣯⣿⣟⣿⣿⣿⣿⠁⠀⠀⠀⣿⡆⠀⠀⠀⣿⡟⠉⠉⠟⠛⠊⠯⢯⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢠⣾⣿⠟⠁⠀⣾⣿⠋⠀⠀⠀⠀⠀⠀⠉⠙⠻⢿⣿⣿⣇⠀⠀⠀⢸⡇⠀⠀⣸⡟⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⢀⣿⣟⠁⠀⠀⢲⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⣿⣖⠀⠀⠀⣿⡄⣰⣿⠁⠀⢀⣤⠶⣂⡶⠀⠀⠀⠀⠈⠳⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣼⣿⠀⠀⠀⠀⠀⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣄⣀⣰⣿⣿⣿⠁⢀⡴⣟⣁⣴⣿⣡⠤⢤⣀⠀⠀⠀⠘⢆⠀⠀⠀⠀⠀⠀⠀⠀
+⠻⣿⣆⠀⠀⠀⠀⠏⢿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠛⠋⠀⠀⠀⠀⠈⠳⢄⠀⠀⠀⠙⠢⣄⠀⠀⠀⠀⠀
+⠀⠹⣿⡀⠀⠀⠀⠠⢈⣻⣦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⣄⠀⠀⠀⠈⢣⡀⠀⠀⠀
+⠀⠀⢸⣷⠀⠀⠀⣖⣾⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⡀⠀⠀⠀⠳⡄⠀⠀
+⠀⠀⢸⡿⠃⡆⣶⣿⡿⢉⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢧⠀⠀⠀⠀⢹⡀⠀
+⣀⣴⠟⠁⠀⢗⣾⣿⠁⢺⢸⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⠀⠀⠀⠀⠀⡇⠀
+⡏⠀⠀⢠⣶⠟⠉⢿⣤⣋⣿⣗⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡏⠀⠀⠀⠀⢀⡇⠀
+⣅⣀⣾⡿⠋⠀⠀⠀⢻⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⢠⠀⠀⢸⠃⠀⠀⠀⠀⡼⠀⠀
+⠿⠛⠉⠀⠀⠀⠀⠀⠀⠻⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠟⢹⣶⡟⠀⠀⠈⠶⣄⠀⠀⢰⠃⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⢿⣿⣿⣷⣶⣤⣤⣾⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⢁⣴⣿⣿⡇⠀⠀⠀⠀⠈⣦⠀⠈⢧⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣆⠙⠻⣿⣾⣿⣿⣿⣿⣿⣿⢷⣽⣿⣦⣄⡀⠀⠀⠀⠀⢀⠞⠁⣴⡾⣿⠏⣿⠀⠀⠀⠀⠀⠀⠘⣇⠀⠀⣧⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣟⢿⣦⣴⣿⠿⠛⠛⠛⠻⣿⡿⠿⠿⠿⣿⣿⣿⣷⣶⣤⣤⣯⣴⢿⡏⢹⡏⠀⢿⡇⠀⠀⠀⠀⠀⠀⡼⠀⠀⢹⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⡀⢹⣿⢁⣠⣤⣄⡀⠀⣿⠀⠀⠀⠀⠈⠙⢿⣿⡛⠛⢉⣩⠞⠉⢀⣼⡇⠀⠀⣿⡀⠀⠀⠀⠀⡼⠁⠀⢀⣾⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣯⠳⢼⡿⠋⠉⠉⠉⠛⢷⣿⡶⠿⣶⣤⣤⣤⣾⣿⡅⠀⠟⠁⡰⢶⠃⠸⣿⣀⣀⣻⣧⠀⠀⠀⣴⠃⠀⠀⢰⠃⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⢿⣆⢸⡇⠀⠀⠀⠀⠀⣨⣿⠁⠀⠀⠀⠀⠀⠀⠘⡇⠀⣴⠋⣠⢼⠀⠀⠹⣿⣿⡀⠻⣦⡀⠀⠻⡄⠀⠀⠈⢳⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣿⡀⠻⣦⣿⣿⡷⠶⠾⠿⣻⣿⠛⠛⠒⠶⠶⠶⠶⢾⡇⠀⡤⠞⠁⡼⠀⠀⠀⢹⣿⣷⠾⣿⣿⠀⠀⢹⡄⠀⠀⣈⡇
+    */
+
+    public static String say (long n){
+        long divisor;
+        String xifra;
+        String xifres;
+
         if (n < 0) {
             return "Menys " + say(-n).toLowerCase();
         }
+        if (n >= 0 && n <= 90) {
+            String numero = trobaNumeroBaix(n);
+            if (!numero.equals("")) return numero;
+        }
+
+        if (n > 20 && n < 100) {
+            long unitat = n % 10;
+            long decena = 10 * (n / 10);
+            if (n < 30) {
+                return say(decena) + "-i-" + say(unitat).toLowerCase();
+            }
+            return say(decena) + "-" + say(unitat).toLowerCase();
+        }
+        if (n >= 100 && n < 1_000) {
+            divisor = 100;
+            xifra = "Cent";
+            xifres = "-cents";
+            return calculaNombre(n, divisor, xifra, xifres);
+        } else if (n > 999) {
+            divisor = 1_000;
+            xifra = "Mil";
+            xifres = " mil";
+            return calculaNombre(n, divisor, xifra, xifres);
+        } else if (n > 9_999) {
+            divisor = 10_000;
+            xifra = "Mil";
+            xifres = " mil";
+            return calculaNombre(n, divisor, xifra, xifres);
+        } else if (n > 99_999) {
+            divisor = 100_000;
+            xifra = "Mil";
+            xifres = " mil";
+            return calculaNombre(n, divisor, xifra, xifres);
+        }
+        return "";
+    }
+
+    private static String trobaNumeroBaix(long n) {
         switch (Integer.parseInt(String.valueOf(n))) {
             case 0: return "Zero";
             case 1: return "Un";
@@ -28,55 +118,18 @@ public class NumbersCat {
             case 30: return "Trenta";
             case 40: return "Quaranta";
             case 50: return "Cinquanta";
-            case 60: return"Seixanta";
+            case 60: return "Seixanta";
             case 70: return "Setanta";
             case 80: return "Vuitanta";
             case 90: return "Noranta";
         }
-
-        int unitat;
-        int decena;
-        int divisor;
-        String xifra;
-        String xifres;
-
-        if (n > 20 && n < 100) {
-            unitat = (int) n % 10;
-            decena = 10 * ((int) n / 10);
-            if (n < 30) {
-                return say(decena) + "-i-" + say(unitat).toLowerCase();
-            }
-            return say(decena) + "-" + say(unitat).toLowerCase();
-        }
-
-        if (n >= 100 && n < 1_000) {
-            divisor = 100;
-            xifra = "Cent";
-            xifres = "-cents";
-            return calculaNombre(n, divisor, xifra, xifres);
-        } else if (n > 999) {
-            divisor = 1_000;
-            xifra = "Mil";
-            xifres = " mil";
-            return calculaNombre(n, divisor, xifra, xifres);
-        } else if (n > 9_999) {
-            divisor = 10_000;
-            xifra = "Mil";
-            xifres = " mil";
-            return calculaNombre(n, divisor, xifra, xifres);
-        } else if (n > 99_999) {
-            divisor = 100_000;
-            xifra = "Mil";
-            xifres = " mil";
-            return calculaNombre(n, divisor, xifra, xifres);
-        }
         return "";
     }
-    private static String calculaNombre (long n, int divisor, String xifra, String xifres){
+
+    private static String calculaNombre (long n, long divisor, String xifra, String xifres){
             String nombre;
-            int centena = (int) (n / divisor);
-            int resto = (int) (n % divisor);
-            String espai = " ";
+            long centena = n / divisor;
+            long resto = n % divisor;
 
             if (centena == 1) {
                 nombre = xifra;
@@ -84,7 +137,7 @@ public class NumbersCat {
                 nombre = say(centena) + xifres;
             }
             if (resto != 0) {
-                nombre += espai + say(resto).toLowerCase();
+                nombre += " " + say(resto).toLowerCase();
             }
             return nombre;
         }
