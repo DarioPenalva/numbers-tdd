@@ -78,12 +78,12 @@ public class NumbersCat {
             xifra = "Mil";
             xifres = " mil";
             return calculaNombre(n, divisor, xifra, xifres);
-        } else if (n > 9_999) {
+        } else if (n > 9_999 && n <= 99_999) {
             divisor = 10_000;
             xifra = "Mil";
             xifres = " mil";
             return calculaNombre(n, divisor, xifra, xifres);
-        } else if (n > 99_999) {
+        } else if (n > 99_999) { // Redundant?
             divisor = 100_000;
             xifra = "Mil";
             xifres = " mil";
