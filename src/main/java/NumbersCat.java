@@ -62,11 +62,11 @@ public class NumbersCat {
 
         if (n > 20 && n < 100) {
             long unitat = n % 10;
-            long decena = 10 * (n / 10);
+            long desena = 10 * (n / 10);
             if (n < 30) {
-                return say(decena) + "-i-" + say(unitat).toLowerCase();
+                return say(desena) + "-i-" + say(unitat).toLowerCase();
             }
-            return say(decena) + "-" + say(unitat).toLowerCase();
+            return say(desena) + "-" + say(unitat).toLowerCase();
         }
         if (n >= 100 && n < 1_000) {
             divisor = 100;
