@@ -73,7 +73,7 @@ public class NumbersCat {
             xifra = "Cent";
             xifres = "-cents";
             return calculaNombre(n, divisor, xifra, xifres);
-        } else if (n > 999) {
+        } else if (n > 999 && n <= 9999) {
             divisor = 1_000;
             xifra = "Mil";
             xifres = " mil";
